@@ -1,10 +1,17 @@
 
+import 'package:home/data/datasource/remote_home.dart';
+import 'package:home/domain/repository/home_repository.dart';
+import 'package:home/home.dart';
+import 'package:home/data/repository/home_repository.dart';
+import 'package:home/domain/usecase/home_usecase.dart';
+import 'package:home/presentation/bloc/home/movie_bloc.dart';
 import 'package:shared/app_config.dart';
 import 'package:shared/style/theme.dart';
 import 'package:shared/util/named_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:splashscreen/splash.dart';
 class AppModule extends Module {
@@ -14,13 +21,26 @@ class AppModule extends Module {
 
   @override
   List<Bind> get binds => [
+    Bind((_) => RemoteMovieImpl(
+      dio: Modular.get<Dio>(),
+    )),
+    Bind((_) => HomeRepositoryImpl(
+        remoteMovie: Modular.get<RemoteMovie>()
+    )),
+    Bind((_) => HomeUseCaseImpl(
+        homeRepository: Modular.get<HomeRepository>()
+    ))
   ];
 
   @override
   List<ModularRoute> get routes => [
     ModuleRoute(
       Modular.get<NamedRoutes>().splashScreen,
-      module: SplashScreenFeatures(appVersion: appVersion),
+      module: SplashFeatures(appVersion: appVersion),
+    ),
+    ModuleRoute(
+      Modular.get<NamedRoutes>().homeScreen,
+      module: HomeFeatures(),
     ),
   ];
 }
@@ -36,7 +56,15 @@ class _MovieAppsState extends State<MovieApps> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => MovieBloc(
+              homeUseCase: Modular.get<HomeUseCase>()
+          ),
+        )
+      ],
+      child: MaterialApp(
       theme: lightTheme,
       debugShowCheckedModeBanner: Config.isDebug,
       builder: (context, child) {
@@ -48,7 +76,9 @@ class _MovieAppsState extends State<MovieApps> {
         );
       },
       initialRoute: Modular.get<NamedRoutes>().splashScreen,
-    ).modular();
+    ).modular(),
+
+    );
   }
 }
 

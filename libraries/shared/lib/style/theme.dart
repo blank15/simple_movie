@@ -204,17 +204,15 @@ ThemeData lightTheme = ThemeData(
       fillColor: MaterialStateProperty.all<Color>(
           Modular.get<ColorPalettes>().primaryColor)),
   appBarTheme: AppBarTheme(
-      elevation: 0,
       toolbarTextStyle: CustomTheme()
           .textBlack
           .apply(bodyColor: Modular.get<ColorPalettes>().primaryColor)
           .bodySmall,
       titleTextStyle: CustomTheme()
-          .textBlack
-          .apply(bodyColor: Modular.get<ColorPalettes>().textBlack)
+          .textWhite
           .subtitle1,
-      backgroundColor: Modular.get<ColorPalettes>().lightBG,
-      iconTheme: IconThemeData(color: Colors.black)),
+      backgroundColor: Modular.get<ColorPalettes>().primaryColor,
+      iconTheme: IconThemeData(color: Colors.white)),
   buttonTheme:
   ButtonThemeData(buttonColor: Modular.get<ColorPalettes>().primaryColor),
   progressIndicatorTheme: ProgressIndicatorThemeData(

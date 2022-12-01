@@ -1,12 +1,10 @@
+import 'package:home/presentation/ui/home_screen.dart';
 import 'package:shared/util/named_routes.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'presentation/ui/home_screen.dart';
 
-import 'ui/splash_screen.dart';
-
-class SplashFeatures extends Module {
-  final String appVersion;
-
-  SplashFeatures({required this.appVersion});
+class HomeFeatures extends Module {
+  HomeFeatures();
 
   final _namedRoutes = Modular.get<NamedRoutes>();
 
@@ -16,8 +14,8 @@ class SplashFeatures extends Module {
   @override
   List<ModularRoute> get routes => [
     ChildRoute(
-      _namedRoutes.splashScreen,
-      child: (context, args) => SplashScreen(appVersion: appVersion),
+      _namedRoutes.homeScreen,
+      child: (context, args) => HomeScreen(),
     ),
   ];
 

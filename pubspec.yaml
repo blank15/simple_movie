@@ -37,6 +37,8 @@ dependencies:
   # our features
   splashscreen:
     path: features/splash
+  home:
+    path: features/home
   # our modules
   core:
     path: libraries/core
