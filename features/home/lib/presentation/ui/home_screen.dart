@@ -4,7 +4,6 @@ import 'package:home/presentation/bloc/home/movie_bloc.dart';
 import 'package:home/presentation/ui/widget/grid_movie.dart';
 import 'package:home/presentation/ui/widget/item_movie.dart';
 import 'package:shared/style/theme.dart';
-
 import '../../data/model/movie.dart';
 import '../bloc/home/movie_event.dart';
 import '../bloc/home/movie_state.dart';
@@ -50,12 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: BlocBuilder<MovieBloc, MovieState>(
         builder: (context, state) {
-          if (state is GetListMovieLoading) {
+          if (state is GetMovieLoading) {
             return Center(child: CircularProgressIndicator());
           } else if (state is GetListMovieSuccess) {
             _listMovie.addAll(state.result);
             return moviesItem();
-          } else if (state is GetListMovieNoInternet) {
+          } else if (state is GetMovieNoInternet) {
             return Center(
               child: Column(
                 children: [
@@ -67,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             );
-          } else if (state is GetListMovieError) {
+          } else if (state is GetMovieError) {
             return Center(
               child: Column(
                 children: [

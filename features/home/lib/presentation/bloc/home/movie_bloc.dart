@@ -21,19 +21,19 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
 
   Stream<MovieState> _getListMovie(int page) async* {
     try {
-      yield GetListMovieLoading();
+      yield GetMovieLoading();
       final response = await homeUseCase.getMovies(page);
       yield GetListMovieSuccess(result: response.results);
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
-        yield GetListMovieNoInternet();
+        yield GetMovieNoInternet();
       } else {
         if (kReleaseMode) {
-          yield GetListMovieError(
+          yield GetMovieError(
               message: "Mohon maaf sedang terjadi gangguan");
         } else {
-          yield GetListMovieError(message: "${e.message}");
+          yield GetMovieError(message: "${e.message}");
         }
       }
     }
@@ -46,13 +46,13 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     } on DioError catch (e) {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
-        yield GetListMovieNoInternet();
+        yield GetMovieNoInternet();
       } else {
         if (kReleaseMode) {
-          yield GetListMovieError(
+          yield GetMovieError(
               message: "Mohon maaf sedang terjadi gangguan");
         } else {
-          yield GetListMovieError(message: "${e.message}");
+          yield GetMovieError(message: "${e.message}");
         }
       }
     }

@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/style/theme.dart';
 import '../../../data/model/movie.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared/util/named_routes.dart';
 
 class ItemMovie extends StatelessWidget {
   final Result movie;
@@ -13,9 +15,14 @@ class ItemMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final _namedRoutes = Modular.get<NamedRoutes>();
+
     return GestureDetector(
-      onTap: () {
-      },
+        onTap: () {
+          Modular.to..pushNamed(
+              '${_namedRoutes.detailScreen}', arguments: movie.id);
+        },
       child: Container(
         padding: const EdgeInsets.all(8.0),
         margin: const EdgeInsets.only(bottom: 16.0),
@@ -89,4 +96,5 @@ class ItemMovie extends StatelessWidget {
       ),
     );
   }
+
 }

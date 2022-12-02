@@ -1,3 +1,4 @@
+import 'package:home/presentation/ui/detail_screen.dart';
 import 'package:home/presentation/ui/home_screen.dart';
 import 'package:shared/util/named_routes.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -16,6 +17,10 @@ class HomeFeatures extends Module {
     ChildRoute(
       _namedRoutes.homeScreen,
       child: (context, args) => HomeScreen(),
+    ),
+    ChildRoute(
+      _namedRoutes.detailScreen,
+      child: (context, args) => DetailScreen(id: args.data),
     ),
   ];
 

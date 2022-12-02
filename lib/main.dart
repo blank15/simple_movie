@@ -4,6 +4,7 @@ import 'package:home/domain/repository/home_repository.dart';
 import 'package:home/home.dart';
 import 'package:home/data/repository/home_repository.dart';
 import 'package:home/domain/usecase/home_usecase.dart';
+import 'package:home/presentation/bloc/home/detail/detail_bloc.dart';
 import 'package:home/presentation/bloc/home/movie_bloc.dart';
 import 'package:shared/app_config.dart';
 import 'package:shared/style/theme.dart';
@@ -60,6 +61,11 @@ class _MovieAppsState extends State<MovieApps> {
       providers: [
         BlocProvider(
           create: (context) => MovieBloc(
+              homeUseCase: Modular.get<HomeUseCase>()
+          ),
+        ),
+        BlocProvider(
+          create: (context) => DetailMovieBloc(
               homeUseCase: Modular.get<HomeUseCase>()
           ),
         )

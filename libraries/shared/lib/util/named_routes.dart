@@ -4,4 +4,5 @@ class NamedRoutes {
 
   /// home module
   String homeScreen = '/home_screen';
+  String detailScreen = "detail_screen";
 }

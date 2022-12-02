@@ -11,3 +11,4 @@ class GetMoviesLoadMore extends MovieEvent {
   final int page;
   GetMoviesLoadMore({required this.page});
 }
+
