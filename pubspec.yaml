@@ -39,6 +39,8 @@ dependencies:
     path: features/splash
   home:
     path: features/home
+  about:
+    path: features/about
   # our modules
   core:
     path: libraries/core

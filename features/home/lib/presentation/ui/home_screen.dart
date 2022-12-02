@@ -4,9 +4,11 @@ import 'package:home/presentation/bloc/home/movie_bloc.dart';
 import 'package:home/presentation/ui/widget/grid_movie.dart';
 import 'package:home/presentation/ui/widget/item_movie.dart';
 import 'package:shared/style/theme.dart';
+import 'package:shared/util/named_routes.dart';
 import '../../data/model/movie.dart';
 import '../bloc/home/movie_event.dart';
 import '../bloc/home/movie_state.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   var _isGrid = false;
   List<Result> _listMovie = [];
 
+  final _namedRoutes = Modular.get<NamedRoutes>();
   ScrollController _scrollController = ScrollController();
 
   @override
@@ -32,6 +35,18 @@ class _HomeScreenState extends State<HomeScreen> {
           textAlign: TextAlign.center,
         )),
         actions: [
+          Padding(
+              padding: EdgeInsets.only(right: 10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Modular.to.pushNamed(
+                      '${_namedRoutes.aboutScreen}', );
+                },
+                child: Icon(
+                  Icons.account_circle,
+                  size: 26.0,
+                ),
+              )),
           Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(

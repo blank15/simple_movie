@@ -20,7 +20,7 @@ class ItemMovie extends StatelessWidget {
 
     return GestureDetector(
         onTap: () {
-          Modular.to..pushNamed(
+          Modular.to.pushNamed(
               '${_namedRoutes.detailScreen}', arguments: movie.id);
         },
       child: Container(

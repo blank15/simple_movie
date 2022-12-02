@@ -1,4 +1,5 @@
 
+import 'package:about/about.dart';
 import 'package:home/data/datasource/remote_home.dart';
 import 'package:home/domain/repository/home_repository.dart';
 import 'package:home/home.dart';
@@ -42,6 +43,10 @@ class AppModule extends Module {
     ModuleRoute(
       Modular.get<NamedRoutes>().homeScreen,
       module: HomeFeatures(),
+    ),
+    ModuleRoute(
+      Modular.get<NamedRoutes>().aboutScreen,
+      module: AboutFeatures(),
     ),
   ];
 }
